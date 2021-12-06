@@ -33,7 +33,7 @@ def fake_categories(count=10):
     category = Category(name='Default')
     db.session.add(category)
 
-    for i in range(count):
+    for _ in range(count):{ # remove lint error
         category = Category(name=fake.word())
         db.session.add(category)
         try:
@@ -43,7 +43,7 @@ def fake_categories(count=10):
 
 
 def fake_posts(count=50):
-    for i in range(count):
+    for _ in range(count):
         post = Post(
             title=fake.sentence(),
             body=fake.text(2000),
@@ -56,7 +56,7 @@ def fake_posts(count=50):
 
 
 def fake_comments(count=500):
-    for i in range(count):
+    for _ in range(count):
         comment = Comment(
             author=fake.name(),
             email=fake.email(),
@@ -69,7 +69,7 @@ def fake_comments(count=500):
         db.session.add(comment)
 
     salt = int(count * 0.1)
-    for i in range(salt):
+    for _ in range(salt):
         # unreviewed comments
         comment = Comment(
             author=fake.name(),
@@ -97,7 +97,7 @@ def fake_comments(count=500):
     db.session.commit()
 
     # replies
-    for i in range(salt):
+    for _ in range(salt):
         comment = Comment(
             author=fake.name(),
             email=fake.email(),
