@@ -33,7 +33,7 @@ def fake_categories(count=10):
     category = Category(name='Default')
     db.session.add(category)
 
-    for _ in range(count):{ # remove lint error
+    for _ in range(count):
         category = Category(name=fake.word())
         db.session.add(category)
         try:
