@@ -38,3 +38,34 @@ jobs:
           command: |
             . venv/bin/activate
             make lint
+
+  build_push_image:
+    machine: true
+    steps:
+      - checkout
+
+      # build the application image
+      - run: docker build --tag=udacitycapstoneproject .
+      
+      # start proprietary DB using private Docker image
+      # with credentials stored in the UI
+      - run: 
+          name: Authenticate, tag & push docker image
+          command: |
+            # Create dockerpath
+            dockerpath="061770600068.dkr.ecr.us-west-2.amazonaws.com/udacitycapstoneproject:latest"
+
+            # Authenticate & tag
+            aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 061770600068.dkr.ecr.us-west-2.amazonaws.com
+            echo "Docker ID and Image: $dockerpath"
+            docker tag udacitycapstoneproject:latest $dockerpath
+
+            # Push image to a docker repository
+            docker push $dockerpath
+  
+
+workflows:
+  default:
+    jobs:
+      - build
+      - build_push_image
