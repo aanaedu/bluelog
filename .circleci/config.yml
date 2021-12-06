@@ -65,7 +65,8 @@ jobs:
   
 
 workflows:
-  default:
+  workflow:
     jobs:
       - build
-      - build_push_image
+      - build_push_image:
+          requires: [build]
