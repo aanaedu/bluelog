@@ -37,9 +37,14 @@ jobs:
             make lint
 
   build_push_image:
-    machine: true
+    docker:
+      - image: circleci/python:3.9.9
     steps:
       - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            pip install awscli
 
       # build the application image
       - run: docker build --tag=udacitycapstoneproject .
