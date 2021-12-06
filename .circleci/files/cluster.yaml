@@ -1,0 +1,22 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: ndcapstoneinfra-cluster
+  region: us-west-2
+
+vpc:
+  id: vpc-0ee8875ea89de07fa
+  cidr: 10.0.0.0/16
+  subnets:
+    public:
+      us-west-2a:
+        id: subnet-0af1fcf2f3c87f7ce
+      us-west-2b:
+        id: subnet-0a34d8f224eb4bad7 
+
+nodeGroups:
+  - name: ng-eks-public
+    instanceType: t2.small
+    minSize: 2
+    maxSize: 4

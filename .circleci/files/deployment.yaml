@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udacitycapstoneproject-app
+  labels:
+    app: udacitycapstoneproject
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: udacitycapstoneproject
+  template:
+    metadata:
+      labels:
+        app: udacitycapstoneproject
+    spec:
+      containers:
+      - name: udacitycapstoneproject
+        image: 061770600068.dkr.ecr.us-west-2.amazonaws.com/udacitycapstoneproject:v1.0.2
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 80

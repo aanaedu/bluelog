@@ -4,7 +4,7 @@
 # Assumes that an image is built via `run_docker.sh`
 
 # Create dockerpath
-dockerpath="061770600068.dkr.ecr.us-west-2.amazonaws.com/udacitycapstoneproject:latest"
+dockerpath="061770600068.dkr.ecr.us-west-2.amazonaws.com/udacitycapstoneproject:v1.0.2"
 
 # Authenticate & tag
 aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 061770600068.dkr.ecr.us-west-2.amazonaws.com
